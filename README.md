@@ -1,1 +1,1 @@
-# kiwi-runner
+# kiwi-tic-tac-toe
