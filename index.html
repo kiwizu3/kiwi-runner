@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 2em;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .cell:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Tic Tac Toe</h1>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="alert alert-info text-center" id="message">Player X's turn</div>
+                <!-- <div class="d-flex flex-wrap">
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                </div> -->
+
+                <div class="row d-flex flex-wrap">
+                    <div class="cell col-4" data-cell></div>
+                    <div class="cell col-4" data-cell></div>
+                    <div class="cell col-4" data-cell></div>
+                    <div class="cell col-4" data-cell></div>
+                    <div class="cell col-4" data-cell></div>
+                    <div class="cell col-4" data-cell></div>
+                    <div class="cell col-4" data-cell></div>
+                    <div class="cell col-4" data-cell></div>
+                    <div class="cell col-4" data-cell></div>
+                </div>
+                <div class="text-center mt-3">
+                    <button class="btn btn-primary" id="restartButton" data-toggle="modal" data-target="#restartModal"
+                        style="display:none;">Restart Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restart Modal -->
+    <div class="modal fade" id="restartModal" tabindex="-1" role="dialog" aria-labelledby="restartModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="restartModalLabel">Game Over</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalMessage">Player X wins!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="modalRestartButton">Restart Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cells = document.querySelectorAll('[data-cell]');
+        const message = document.getElementById('message');
+        const restartButton = document.getElementById('restartButton');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalRestartButton = document.getElementById('modalRestartButton');
+        let currentPlayer = 'X';
+        let gameOver = false;
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', handleCellClick);
+        });
+
+        function handleCellClick(e) {
+            const cell = e.target;
+
+            if (gameOver || cell.textContent !== '') return;
+
+            cell.textContent = currentPlayer;
+            cell.classList.add('text-' + currentPlayer.toLowerCase());
+
+            if (checkWin()) {
+                gameOver = true;
+                message.textContent = `Player ${currentPlayer} wins!`;
+                modalMessage.textContent = `Player ${currentPlayer} wins!`;
+                restartButton.style.display = 'block';
+                $('#restartModal').modal('show');
+            } else if ([...cells].every(cell => cell.textContent !== '')) {
+                gameOver = true;
+                message.textContent = "It's a draw!";
+                modalMessage.textContent = "It's a draw!";
+                restartButton.style.display = 'block';
+                $('#restartModal').modal('show');
+            } else {
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                message.textContent = `Player ${currentPlayer}'s turn`;
+            }
+        }
+
+        modalRestartButton.addEventListener('click', () => {
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('text-x', 'text-o');
+            });
+            currentPlayer = 'X';
+            gameOver = false;
+            message.textContent = "Player X's turn";
+            restartButton.style.display = 'none';
+            $('#restartModal').modal('hide');
+        });
+
+        function checkWin() {
+            const winningCombos = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+                [0, 4, 8], [2, 4, 6] // Diagonals
+            ];
+
+            return winningCombos.some(combo => {
+                const [a, b, c] = combo;
+                return cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent;
+            });
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
