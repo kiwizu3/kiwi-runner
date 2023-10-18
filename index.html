@@ -7,7 +7,7 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@800&family=Outfit:wght@100;400;600&family=Playfair+Display:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@800&family=Outfit:wght@100;400;600;800&family=Playfair+Display:wght@400;700&display=swap');
 
         html,
         body {
@@ -108,8 +108,7 @@
             <div class="col-12 my-auto">
                 <h1 class="text-center fw-700 title-font mb-n3 icon-text text-angle-n5 prevent-select">Kiwi's</h1>
                 <h1 class="text-center fw-700 text-white mb-5 text-angle-5 prevent-select">Tic Tac Toe</h1>
-                <div class="alert alert-transparent text-white text-center fw-400 fs-2r prevent-select" id="message">Player X's turn
-                </div>
+                <div class="alert alert-transparent text-white text-center fw-400 fs-2r prevent-select">Player <span class="fw-600" id="message">X</span>'s turn</div>
 
                 <div class="d-flex align-items-center flex-column font-tic-tac-toe">
                     <div class="d-flex">
@@ -137,7 +136,9 @@
                 </div>
 
             </div>
+     
         </div>
+    
     </div>
 
     <!-- Restart Modal -->
@@ -198,7 +199,7 @@
                 $('#restartModal').modal('show');
             } else {
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-                message.textContent = `Player ${currentPlayer}'s turn`;
+                message.textContent = `${currentPlayer}`;
             }
         }
 
