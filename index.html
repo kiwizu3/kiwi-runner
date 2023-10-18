@@ -7,53 +7,122 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@800&family=Outfit:wght@100;400;600&family=Playfair+Display:wght@400;700&display=swap');
+
+        html,
+        body {
+            background: rgb(18, 18, 18);
+            background: linear-gradient(180deg, rgba(18, 18, 18, 1) 0%, rgba(46, 46, 46, 1) 93%, rgb(51, 51, 51) 100%);
+            height: 100%;
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        .title-font {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-tic-tac-toe {
+            font-family: 'Gabarito', sans-serif !important;
+        }
+
+        .fw-700 {
+            font-weight: 700 !important;
+        }
+
+        .fw-600 {
+            font-weight: 600 !important;
+        }
+
+        .fw-400 {
+            font-weight: 400 !important;
+        }
+
         .cell {
             width: 100px;
             height: 100px;
-            font-size: 2em;
+            font-size: 4rem;
+            color: var(--primary);
+            font-weight: 600;
             text-align: center;
-            border: 1px solid #ccc;
+            border: 1px dashed #464646;
+            display: inline-block;
         }
 
         .cell:hover {
             cursor: pointer;
         }
+
+        .alert {
+            background: -webkit-linear-gradient(45deg, #fbc2eb, #a6c1ee 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .icon-text {
+            background: -webkit-linear-gradient(45deg, #fbc2eb, #a6c1ee 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .fs-2r {
+            font-size: 1.4rem;
+        }
+
+        .restart-btn {
+            top: 2rem;
+            left: 1.4rem;
+        }
+        .text-angle-n5{
+            rotate: 5deg;
+        }
+        .text-angle-5{
+            rotate: -5deg;
+        }
+        .text-angle-n5:hover{
+            rotate: -5deg;
+        }
+        .text-angle-5:hover{
+            rotate: 5deg;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Tic Tac Toe</h1>
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <div class="alert alert-info text-center" id="message">Player X's turn</div>
-                <!-- <div class="d-flex flex-wrap">
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                </div> -->
+    <div class="container-fluid h-100">
 
-                <div class="row d-flex flex-wrap">
-                    <div class="cell col-4" data-cell></div>
-                    <div class="cell col-4" data-cell></div>
-                    <div class="cell col-4" data-cell></div>
-                    <div class="cell col-4" data-cell></div>
-                    <div class="cell col-4" data-cell></div>
-                    <div class="cell col-4" data-cell></div>
-                    <div class="cell col-4" data-cell></div>
-                    <div class="cell col-4" data-cell></div>
-                    <div class="cell col-4" data-cell></div>
+        <div class="row justify-content-center h-100">
+            <div class="col-12 my-auto">
+                <h1 class="text-center fw-700 title-font mb-n3 icon-text text-angle-n5">Kiwi's</h1>
+                <h1 class="text-center fw-700 text-white mb-5 text-angle-5">Tic Tac Toe</h1>
+                <div class="alert alert-transparent text-white text-center fw-400 fs-2r" id="message">Player X's turn
                 </div>
-                <div class="text-center mt-3">
-                    <button class="btn btn-primary" id="restartButton" data-toggle="modal" data-target="#restartModal"
-                        style="display:none;">Restart Game</button>
+
+                <div class="d-flex align-items-center flex-column font-tic-tac-toe">
+                    <div class="d-flex">
+                        <div class="cell icon-text" data-cell></div>
+                        <div class="cell icon-text" data-cell></div>
+                        <div class="cell icon-text" data-cell></div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="cell icon-text" data-cell></div>
+                        <div class="cell icon-text" data-cell></div>
+                        <div class="cell icon-text" data-cell></div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="cell icon-text" data-cell></div>
+                        <div class="cell icon-text" data-cell></div>
+                        <div class="cell icon-text" data-cell></div>
+                    </div>
                 </div>
+
+                <div class="position-relative">
+                    <div class="position-absolute restart-btn">
+                        <button class="btn btn-danger rounded-0 border-0" id="restartButton" data-toggle="modal"
+                            data-target="#restartModal" style="display:none;">Restart Game</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -73,8 +142,9 @@
                     <p id="modalMessage">Player X wins!</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="modalRestartButton">Restart Game</button>
+                    <button type="button" class="btn btn-dark rounded-0 border-0" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger rounded-0 border-0" id="modalRestartButton">Restart
+                        Game</button>
                 </div>
             </div>
         </div>
