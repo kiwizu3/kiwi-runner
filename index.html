@@ -73,17 +73,30 @@
             top: 2rem;
             left: 1.4rem;
         }
-        .text-angle-n5{
+
+        .text-angle-n5 {
             rotate: 5deg;
         }
-        .text-angle-5{
+
+        .text-angle-5 {
             rotate: -5deg;
         }
-        .text-angle-n5:hover{
+
+        .text-angle-n5:hover {
             rotate: -5deg;
         }
-        .text-angle-5:hover{
+
+        .text-angle-5:hover {
             rotate: 5deg;
+        }
+
+        .prevent-select {
+            -webkit-user-select: none;
+            /* Safari */
+            -ms-user-select: none;
+            /* IE 10 and IE 11 */
+            user-select: none;
+            /* Standard syntax */
         }
     </style>
 </head>
@@ -93,8 +106,8 @@
 
         <div class="row justify-content-center h-100">
             <div class="col-12 my-auto">
-                <h1 class="text-center fw-700 title-font mb-n3 icon-text text-angle-n5">Kiwi's</h1>
-                <h1 class="text-center fw-700 text-white mb-5 text-angle-5">Tic Tac Toe</h1>
+                <h1 class="text-center fw-700 title-font mb-n3 icon-text text-angle-n5 prevent-select">Kiwi's</h1>
+                <h1 class="text-center fw-700 text-white mb-5 text-angle-5 prevent-select">Tic Tac Toe</h1>
                 <div class="alert alert-transparent text-white text-center fw-400 fs-2r" id="message">Player X's turn
                 </div>
 
