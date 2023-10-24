@@ -96,7 +96,7 @@
             color: var(--primary);
             font-weight: 600;
             text-align: center;
-            border: 1px dashed #FFCC4D;
+            border: 2px dotted #000000;
             display: inline-block;
         }
 
@@ -122,9 +122,6 @@
         }
         .ttt-text{
             color: #040306!important;
-        }
-        .bg-platinum{
-            background: -webkit-linear-gradient(45deg, #5f5f5ff2, #04030675 80%);
         }
 
         .fs-2r {
@@ -161,6 +158,44 @@
             user-select: none;
             /* Standard syntax */
         }
+
+        .b-br{
+            border-bottom-width: 0 !important;
+            border-right-width: 0 !important;
+        }
+
+        .b-tr{
+            border-top-width: 0 !important;
+            border-right-width: 0 !important;
+        }
+
+        .b-r{
+            border-right-width: 0 !important;
+        }
+
+
+        .b-bl{
+            border-bottom-width: 0 !important;
+            border-left-width: 0 !important;
+        }
+
+        .b-tl{
+            border-top-width: 0 !important;
+            border-left-width: 0 !important;
+        }
+
+        .b-l{
+            border-left-width: 0 !important;
+        }
+
+        .b-b{
+            border-bottom-width: 0 !important;
+        }
+
+        .b-t{
+            border-top-width: 0 !important;
+        }
+        
     </style>
 </head>
 
@@ -180,19 +215,19 @@
 
                         <div class="d-flex align-items-center flex-column font-tic-tac-toe bg-platinum">
                             <div class="d-flex">
-                                <div class="cell icon-text ps-1" data-cell></div>
-                                <div class="cell icon-text ps-1" data-cell></div>
-                                <div class="cell icon-text ps-1" data-cell></div>
+                                <div class="cell icon-text ps-1 b-br" data-cell></div>
+                                <div class="cell icon-text ps-1 b-b" data-cell></div>
+                                <div class="cell icon-text ps-1 b-bl" data-cell></div>
                             </div>
                             <div class="d-flex">
+                                <div class="cell icon-text ps-1 b-r" data-cell></div>
                                 <div class="cell icon-text ps-1" data-cell></div>
-                                <div class="cell icon-text ps-1" data-cell></div>
-                                <div class="cell icon-text ps-1" data-cell></div>
+                                <div class="cell icon-text ps-1 b-l" data-cell></div>
                             </div>
                             <div class="d-flex">
-                                <div class="cell icon-text ps-1" data-cell></div>
-                                <div class="cell icon-text ps-1" data-cell></div>
-                                <div class="cell icon-text ps-1" data-cell></div>
+                                <div class="cell icon-text ps-1 b-tr" data-cell></div>
+                                <div class="cell icon-text ps-1 b-t" data-cell></div>
+                                <div class="cell icon-text ps-1 b-tl" data-cell></div>
                             </div>
                         </div>
 
